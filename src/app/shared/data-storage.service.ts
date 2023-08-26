@@ -13,7 +13,7 @@ export class DataStorageService {
     const recipes = this.recipeService.getRecipes();
     this.http
       .put(
-        'https://ng-course-recipe-book-65f10.firebaseio.com/recipes.json',
+        'https://ng-course-recipe-book-a8361-default-rtdb.firebaseio.com/recipes.json',
         recipes
       )
       .subscribe(response => {
@@ -22,9 +22,14 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
+    /* this.http
+      .get<Recipe[]>('https://ng-course-recipe-book-a8361-default-rtdb.firebaseio.com/recipes.json')
+      .subscribe(recipes => {
+        this.recipeService.setRecipes(recipes);
+      }); */
     return this.http
       .get<Recipe[]>(
-        'https://ng-course-recipe-book-65f10.firebaseio.com/recipes.json'
+        'https://ng-course-recipe-book-a8361-default-rtdb.firebaseio.com/recipes.json'
       )
       .pipe(
         map(recipes => {
