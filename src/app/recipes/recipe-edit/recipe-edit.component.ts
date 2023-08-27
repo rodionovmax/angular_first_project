@@ -14,15 +14,15 @@ export class RecipeEditComponent implements OnInit {
   editMode = false;
   recipeForm: FormGroup;
 
+  get ingredientsControls() {
+    return (this.recipeForm.get('ingredients') as FormArray).controls;
+  }
+
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
     private router: Router
   ) {}
-
-  get recipeControls() {
-    return (this.recipeForm.get('ingredients') as FormArray).controls
-  }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -98,11 +98,5 @@ export class RecipeEditComponent implements OnInit {
       description: new FormControl(recipeDescription, Validators.required),
       ingredients: recipeIngredients
     });
-  }
-
-  getControls() {
-    // original version
-    // *ngFor="let ingredientCtrl of recipeForm.get('ingredients').controls; let i = index"
-    return (this.recipeForm.get('controlName') as FormArray).controls;
   }
 }
